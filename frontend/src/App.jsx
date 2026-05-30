@@ -4,7 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 // Constants
 // ─────────────────────────────────────────────────────────────────────────────
 
-const API_BASE = "http://localhost:8000";
+// const API_BASE = "http://localhost:8000";
+const API_BASE = "https://teleassist.onrender.com";
 
 // Icon components (inline SVG, no external deps)
 const SignalIcon = () => (
