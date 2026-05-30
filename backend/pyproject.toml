@@ -1,0 +1,31 @@
+[project]
+name = "rag-telecom-chatbot"
+version = "2.0.0"
+description = "RAG-based telecom customer care chatbot — FastAPI + React frontend"
+requires-python = ">=3.11"
+dependencies = [
+    # ── LangChain ecosystem ────────────────────────────────────────────────────
+    "langchain",
+    "langchain-core",
+    "langchain-chroma",
+    "langchain-groq",
+    "langchain-huggingface",
+    "langchain-community",
+    "langchain-text-splitters",
+
+    # ── Vector store & embeddings ──────────────────────────────────────────────
+    "chromadb",
+    "sentence-transformers",
+
+    # ── Data ingestion ─────────────────────────────────────────────────────────
+    "pandas",
+    "fpdf2",
+    "pypdf",
+
+    # ── API server (replaces Streamlit) ────────────────────────────────────────
+    "fastapi",
+    "uvicorn[standard]",     # ASGI server with WebSocket + HTTP/2 support
+
+    # ── Utilities ─────────────────────────────────────────────────────────────
+    "python-dotenv",
+]
