@@ -65,6 +65,7 @@ ALLOWED_ORIGINS = [
     "http://localhost:3000",   # CRA / other
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
+    "https://tele-assist-one.vercel.app/",  # Deployed frontend (adjust if you deploy somewhere else)       
 ]
 
 app.add_middleware(
