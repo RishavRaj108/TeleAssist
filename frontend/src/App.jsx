@@ -6,7 +6,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 
 // const API_BASE = "http://localhost:8000";
 // const API_BASE = "https://teleassist.onrender.com";
-const API_BASE = "https://teleassist.onrender.com";
+// const API_BASE = "https://rishavraj1-teleassist.hf.space";
+const API_BASE = "https://rishavraj1-teleassist.hf.space";
 
 // Icon components (inline SVG, no external deps)
 const SignalIcon = () => (
