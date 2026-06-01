@@ -11,13 +11,14 @@ Falls back to building its own stores when called from the CLI.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 from typing import List, Optional, Tuple
 
 from langchain_core.documents import Document
 
 CHROMA_DIR  = "chroma_store"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-SIMILARITY_THRESHOLD = 2.0   # L2 distance cut-off; raise if getting too many fallbacks
+SIMILARITY_THRESHOLD = 1.0   # L2 distance cut-off; raise if getting too many fallbacks
 
 
 @dataclass
@@ -74,9 +75,12 @@ def retrieve_with_scores(
     """
     # Build stores only if not pre-loaded (CLI mode)
     if faq_store is None or tickets_store is None or guides_store is None:
-        from langchain_huggingface import HuggingFaceEmbeddings
         from langchain_chroma import Chroma
-        embeddings = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
+        from langchain_huggingface import HuggingFaceEndpointEmbeddings
+        embeddings = HuggingFaceEndpointEmbeddings(
+            model="sentence-transformers/all-MiniLM-L6-v2",
+            huggingfacehub_api_token=os.getenv("HF_TOKEN"),
+        )
         faq_store     = Chroma(collection_name="faq",     embedding_function=embeddings, persist_directory=CHROMA_DIR)
         tickets_store = Chroma(collection_name="tickets", embedding_function=embeddings, persist_directory=CHROMA_DIR)
         guides_store  = Chroma(collection_name="guides",  embedding_function=embeddings, persist_directory=CHROMA_DIR)
